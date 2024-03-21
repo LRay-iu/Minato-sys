@@ -1,0 +1,11 @@
+@import './base.css';
+
+
+body{
+  margin: 0px;
+  padding: 0px;
+  font-family: "Microsoft YaHei", "微软雅黑", "Helvetica Neue", Helvetica, Arial, sans-serif;
+   /* 设置的最小宽度，小于1024时，会出现滚动条 */
+  min-width: 1024px; 
+  min-height: 100%;
+}
