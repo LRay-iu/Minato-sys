@@ -1,16 +1,14 @@
 <template>
-  <header>
 
-  </header>
+  <RouterView></RouterView>
 
-  <main>
-    <Base />
-  </main>
 </template>
 
 <script setup lang="ts">
-import Base from './pages/Base.vue'
-
+// import Base from './pages/Base.vue';
+import { RouterView } from 'vue-router';
 </script>
 
-<style></style>
+<style>
+@import './assets/main.css'
+</style>

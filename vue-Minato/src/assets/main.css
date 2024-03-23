@@ -8,4 +8,8 @@ body{
    /* 设置的最小宽度，小于1024时，会出现滚动条 */
   min-width: 1024px; 
   min-height: 100%;
+  border: 0;
+}
+#app {
+  margin-top: 0px;
 }
