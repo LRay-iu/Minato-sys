@@ -1,6 +1,6 @@
 <template>
     <div style="background-color: #fbfbfe;">
-        <el-container style="padding:30px 0px 20px 23px">
+        <el-container style="padding:30px 0px 20px 15px">
             <el-image style="width: 180px; height: 45px;border-radius: 15px;" src="/src/assets/logo/login_logo.png"
                 fit="fill" />
         </el-container>
@@ -58,7 +58,7 @@ function register() {
 <style scoped>
 /* 背景 */
 .loginPage {
-    height: 85vh;
+    height: 90vh;
     /* display: flex; */
     justify-content: center;
     align-items: center;
@@ -70,7 +70,7 @@ function register() {
     align-items: center;
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0px 0px 0px 2px 14px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.1);
     color: black;
 }
 

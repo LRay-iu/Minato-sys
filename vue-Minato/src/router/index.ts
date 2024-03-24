@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from "vue-router"
 import HomePage from "@/pages/HomePage.vue"
 import Login from "@/pages/Login.vue"
 import Register from "@/pages/Register.vue"
+import userRequest from "@/pages/userRequest.vue"
+Request
 //创建路由器
 const router = createRouter({
     //路由器工作模式,很重要👇👇👇
@@ -26,6 +28,11 @@ const router = createRouter({
             name: "register",
             path: "/register",
             component: Register,
+        },
+        {
+            name: "userRequest",
+            path: "/3-1",
+            component: userRequest,
         },
     ],
 })

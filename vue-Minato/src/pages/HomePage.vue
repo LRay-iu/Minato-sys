@@ -1,18 +1,18 @@
 <template>
     <PageTop />
     <el-container class="Maincontent" direction="vertical">
+        <!-----轮播图-->
+        <div style="width: 1897px;">
+            <el-carousel height="auto" autoplay>
+                <el-carousel-item v-for="item in img" :key="item"
+                    style="height: 450px;display:flex;align-items: center;justify-content: center;">
+                    <el-image style="object-fit: cover; " :src="item.URL" />
+                </el-carousel-item>
+            </el-carousel>
+        </div>
         <el-container direction="horizontal">
             <!-- 左半边 -->
             <el-container class="Page" style="width:1050px;" direction="vertical">
-                <!-----轮播图-->
-                <div style="width: 900px;">
-                    <el-carousel height="auto" autoplay>
-                        <el-carousel-item v-for="item in img" :key="item" style="height: 450px">
-                            <el-image style="width: 900px; height: 480px" :src="item.URL" />
-                        </el-carousel-item>
-                    </el-carousel>
-                </div>
-                <el-divider class="divide" />
                 <!--推送-->
                 <el-container class="articleList" direction="horizontal">
                     <el-container>
@@ -88,13 +88,13 @@
 
             </el-container>
             <!-- 右半边 -->
-            <el-container style="width:400px; " direction="vertical">
-                <div class="recommend" style="background-color: #ffffea;">
+            <el-container style="width:400px; margin-top: 20px;" direction="vertical">
+                <div class="recommend" style="background-color: #fffdf5;">
                     <div class="top"> 今日推荐</div>
                     <div v-for="(content, index) in recommend" :key="index" class="link">
                         <el-link href="/" :underline="false" style="font-size: 18px;">{{ index + 1 }}&nbsp;.&nbsp;{{
-                            content
-                        }}</el-link>
+                    content
+                }}</el-link>
                     </div>
                 </div>
             </el-container>
@@ -136,7 +136,7 @@ const recommend = [
     /* border: 1px solid red; */
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    /* margin-top: 2px; */
     /* height: 100vh; */
 }
 
@@ -158,9 +158,10 @@ const recommend = [
     border-radius: 10px;
     margin: 5px;
     height: 200px;
-    border: solid 1px #cccccc;
+    /* border: solid 1px #cccccc; */
     justify-content: center;
     align-items: center;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
 }
 
 .articleList .thumb {
@@ -196,7 +197,8 @@ const recommend = [
     border-radius: 12px;
     margin-top: 30px;
     height: 450px;
-    border: solid 1px rgba(255, 153, 0, 0.38);
+    /* border: solid 1px rgba(255, 153, 0, 0.38); */
+    box-shadow: 0px 0px 10px 1px #f0ebd6;
 }
 
 .recommend .top {

@@ -12,13 +12,13 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@metamask/detect-provider": "^2.0.0",
     "element-plus": "^2.6.1",
     "vue": "^3.4.15",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.2",
-    "@types/node": "^20.11.10",
     "@vitejs/plugin-vue": "^5.0.3",
     "@vue/tsconfig": "^0.5.1",
     "npm-run-all2": "^6.1.1",
