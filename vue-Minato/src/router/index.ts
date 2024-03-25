@@ -3,7 +3,10 @@ import { createRouter, createWebHistory } from "vue-router"
 import HomePage from "@/pages/HomePage.vue"
 import Login from "@/pages/Login.vue"
 import Register from "@/pages/Register.vue"
-import userRequest from "@/pages/userRequest.vue"
+import userClaim from "@/pages/user_Claim.vue"
+import userClaimQuery from "@/pages/user_ClaimQuery.vue"
+import userInsuranceBought from "@/pages/user_InsuranceBought.vue"
+import userInsuranceQuery from "@/pages/user_InsuranceQuery.vue"
 Request
 //创建路由器
 const router = createRouter({
@@ -30,9 +33,24 @@ const router = createRouter({
             component: Register,
         },
         {
-            name: "userRequest",
+            name: "userInsuranceBought ",
+            path: "/2-1",
+            component: userInsuranceBought,
+        },
+        {
+            name: "userInsuranceQuery",
+            path: "/2-2",
+            component: userInsuranceQuery,
+        },
+        {
+            name: "userClaim",
             path: "/3-1",
-            component: userRequest,
+            component: userClaim,
+        },
+        {
+            name: "claimQuery",
+            path: "/3-2",
+            component: userClaimQuery,
         },
     ],
 })

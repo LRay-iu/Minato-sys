@@ -20,26 +20,57 @@
         </el-space>
     </div>
     <!------------------------------------- 导航栏 ------------------------------------->
-    <el-menu v-bind="menuProps" class="menu-wrapper " mode="horizontal" :default-active="$route.path">
+    <el-menu v-bind="menuProps" class="menu-wrapper " :popper-offset="5" mode="horizontal"
+        :default-active="$route.path">
         <div style="margin-right: 350px;">
             <img src="../assets/logo/minato_logo2.png" alt="" style="width:160px;height:60px">
         </div>
         <el-menu-item index="/">首页</el-menu-item>
         <el-sub-menu index="2">
             <template #title>
-                <el-container style="height: 98px;align-items: center;">服务中心</el-container>
+                <el-container style="height: 78px;align-items: center;">服务中心</el-container>
             </template>
-            <el-menu-item index="/2-1">车险购买</el-menu-item>
-            <el-menu-item index="/2-2">保单查询</el-menu-item>
-            <el-menu-item index="/2-3">一键投诉</el-menu-item>
+            <el-menu-item index="/2-1">
+                <el-icon>
+                    <ShoppingCart />
+                </el-icon>
+                <span>&nbsp; 车险购买</span>
+            </el-menu-item>
+            <el-menu-item index="/2-2">
+                <el-icon>
+                    <Search />
+                </el-icon>
+                <span>&nbsp; 保单查询</span>
+            </el-menu-item>
+            <el-menu-item index="/2-3">
+                <el-icon>
+                    <Message />
+                </el-icon>
+                <span>&nbsp; 一键投诉</span>
+            </el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="3">
             <template #title>
-                <el-container style="height: 98px;align-items: center;">理赔中心</el-container>
+                <el-container style="height: 78px;align-items: center;">理赔中心</el-container>
             </template>
-            <el-menu-item index="/3-1">车险在线理赔</el-menu-item>
-            <el-menu-item index="/3-2">理赔查询</el-menu-item>
-            <el-menu-item index="/3-3">理赔资料下载</el-menu-item>
+            <el-menu-item index="/3-1">
+                <el-icon>
+                    <Coin />
+                </el-icon>
+                <span>&nbsp; 车险在线理赔</span>
+            </el-menu-item>
+            <el-menu-item index="/3-2">
+                <el-icon>
+                    <Search />
+                </el-icon>
+                <span>&nbsp; 理赔查询</span>
+            </el-menu-item>
+            <el-menu-item index="/3-3">
+                <el-icon>
+                    <Download />
+                </el-icon>
+                <span>&nbsp; 理赔资料下载</span>
+            </el-menu-item>
         </el-sub-menu>
 
         <el-menu-item index="/4">车友圈</el-menu-item>
@@ -56,7 +87,6 @@ const router = useRouter()
 
 // el-menu的属性定义
 const menuProps = {
-    defaultActive: router.keyPath,
     mode: 'horizontal',
     uniqueOpened: true,
     router: true,
@@ -99,17 +129,6 @@ function SUES() {
     height: 100px;
 }
 
-.menu-wrapper,
-.el-sub-menu,
-.el-menu-item,
-.el-sub-menu__title {
-    font-size: 18px;
-    --el-menu-item-font-size: 18px;
-    --el-menu-active-color: #ff9900 !important;
-    --el-menu-hover-text-color: #ff9900 !important;
-    --el-menu-hover-bg-color: rgba(255, 255, 255, 0);
-
-}
 
 .el-sub-menu__title :hover {
     color: #ff9900 !important;
@@ -120,7 +139,7 @@ function SUES() {
     /* border-top: 1px solid rgba(0, 0, 0, 0.2); */
     border-bottom: 0;
     /* border: 1px red solid; */
-    height: 100px;
+    height: 80px;
     align-items: center;
     justify-content: center;
     margin-bottom: 5px;

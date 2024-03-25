@@ -13,3 +13,19 @@ body{
 #app {
   margin-top: 0px;
 }
+
+.menu-wrapper,
+.el-sub-menu,
+.el-menu-item,
+.el-sub-menu__title {
+    font-size: 18px;
+    --el-menu-item-font-size: 18px;
+    --el-menu-active-color: #ff9900 !important;
+    --el-menu-hover-text-color: #ff9900 !important;
+    --el-menu-hover-bg-color: rgba(255, 255, 255, 0);
+
+}
+
+/* .el-menu  .span{
+  margin-left: 100px;
+} */
