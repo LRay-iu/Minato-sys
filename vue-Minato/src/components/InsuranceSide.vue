@@ -1,5 +1,5 @@
 <template>
-    <div style="width:260px;box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.1);;">
+    <div style="width:240px;box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.1);;">
         <h2 class="mb-2" style="display: flex;justify-content: center;margin: 20px;">
             服务中心</h2>
         <el-menu mode="vertical" class="el-menu-vertical-demo" router="true" :default-active="$route.path"

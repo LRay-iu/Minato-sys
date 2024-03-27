@@ -1,24 +1,27 @@
 <template>
 
     <!------------------------------------- 头部 ------------------------------------->
-    <div class="header-box">
-        <el-space direction="horizontal" alignment="start" style="margin-left: 15px;width:500px">
-            <div>
-                您好，欢迎来到水门车险！
-            </div>
-            <el-space direction="horizontal" alignment="start" :size="15">
-                <el-link :underline="false" @click="Login" style="margin-left: 25px;font-size: 15px;">登录</el-link>
-                <div style="margin-left: 5px;">
-                    |
+    <el-container style="justify-content: center;">
+        <div class="header-box">
+            <el-space direction="horizontal" alignment="start">
+                <div>
+                    您好，欢迎来到水门车险！
                 </div>
-                <el-link :underline="false" @click="Register" style="margin-left: 15px;font-size: 15px;">注册</el-link>
+                <el-space direction="horizontal" alignment="start" :size="15">
+                    <el-link :underline="false" @click="Login" style="margin-left: 25px;font-size: 15px;">登录</el-link>
+                    <div style="margin-left: 5px;">
+                        |
+                    </div>
+                    <el-link :underline="false" @click="Register"
+                        style="margin-left: 15px;font-size: 15px;">注册</el-link>
+                </el-space>
             </el-space>
-        </el-space>
-        <el-space direction="horizontal" alignment="start" :size="20" style="width: 300px;">
-            <div>如有意外,联系作者</div>
-            <div>vx : LRay-iu</div>
-        </el-space>
-    </div>
+            <el-space direction="horizontal" alignment="start" :size="20">
+                <div>如有意外,联系作者</div>
+                <div>vx : LRay-iu</div>
+            </el-space>
+        </div>
+    </el-container>
     <!------------------------------------- 导航栏 ------------------------------------->
     <el-menu v-bind="menuProps" class="menu-wrapper " :popper-offset="5" mode="horizontal"
         :default-active="$route.path">
@@ -114,8 +117,9 @@ function SUES() {
 
 .header-box {
     height: 30px;
+    width: 1100px;
     /* border: 1px red solid; */
-    margin: 10px 300px;
+    /* margin-left: 300px; */
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -2,7 +2,7 @@
     <PageTop />
     <el-container class="Maincontent" direction="vertical">
         <!-----轮播图-->
-        <div style="width: 1897px;">
+        <div style="width: 99vw;">
             <el-carousel height="auto" autoplay>
                 <el-carousel-item v-for="item in img" :key="item"
                     style="height: 450px;display:flex;align-items: center;justify-content: center;">
