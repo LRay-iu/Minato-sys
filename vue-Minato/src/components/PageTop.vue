@@ -78,7 +78,7 @@
 
         <el-menu-item index="/4">车友圈</el-menu-item>
         <div style="margin-left: 80px;margin-right: 25px;">
-            <img src="../assets/logo/SUES.png" alt="" style="width:220px;height:85px" @click="SUES" />
+            <img src="../assets/logo/SUES.png" alt="" style="width:220px;height:78px" @click="SUES" />
         </div>
     </el-menu>
 
