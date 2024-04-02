@@ -5,7 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90d3190c-a6c9-4008-9195-fda267aa2664" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/common.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/dbconnect.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/redis.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/errorCode.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/middleware/jwt.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/claim.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/claimfile.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/insurance.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/purchase.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/router/routers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +67,33 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\study_test\Minato_Sys\gin-Minato\config" />
+      <recent name="D:\study_test\Minato_Sys\gin-Minato\middleware" />
+      <recent name="D:\study_test\Minato_Sys\gin-Minato\model" />
+      <recent name="D:\study_test\Minato_Sys\gin-Minato\controller" />
+      <recent name="D:\study_test\Minato_Sys\gin-Minato\controller\v1" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build gin-Minato/middleware">
+    <configuration name="go build dao.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="gin-Minato" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/dao/dao.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build gin-Minato/middleware" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="gin-Minato" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="gin-Minato/middleware" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/middleware/jwt.go" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="gin-Minato" />
       <working_directory value="$PROJECT_DIR$" />
@@ -62,13 +104,26 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build gin-Minato/middleware" />
         <item itemvalue="Go Build.go build main.go" />
+        <item itemvalue="Go Build.go build dao.go" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
