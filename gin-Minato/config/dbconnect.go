@@ -25,7 +25,7 @@ func init() {
 	if name == "" || password == "" {
 		panic("缺少必要的环境变量 name 或 password")
 	}
-	Mysqldb = fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/minato_sys?charset=utf8", name, password)
+	Mysqldb = fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/minato_sys?charset=utf8mb4&parseTime=true", name, password)
 	//链接数据库
 	Db, err = gorm.Open(mysql.Open(Mysqldb), &gorm.Config{})
 	if err != nil {

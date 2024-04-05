@@ -1,3 +1,4 @@
 # ignore following
 *.md
-*.env
+.env
+.gitignore

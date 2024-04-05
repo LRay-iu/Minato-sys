@@ -19,10 +19,38 @@
                 </el-header>
                 <el-main style="width:450px;">
                     <el-container style=" justify-content: center;align-items: center;" direction="vertical">
-                        <el-input v-model="username" placeholder="请输入用户名" clearable />
-                        <el-input v-model="password" type="password" placeholder="请输入密码" clearable show-password />
-                        <el-input v-model="publicKey" placeholder="请输入Metamask账户公钥" clearable @focus="autoFill"/>
-                        <el-button color="#0060df" @click="register">
+                        <!-- ---------------------------------------------注册表单 ------------------------------------------------------->
+                        <el-form :rules="rules" ref="registerFormRef" :model="registerForm">
+                            <el-form-item prop="userid">
+                                <el-input v-model="registerForm.userid" placeholder="请输入身份证号" clearable
+                                    @keydown.enter="handleEnter" />
+                            </el-form-item>
+                            <el-form-item prop="username">
+                                <el-input v-model="registerForm.username" placeholder="请输入用户名" clearable
+                                    @keydown.enter="handleEnter" />
+                            </el-form-item>
+                            <el-form-item prop="password">
+                                <el-input v-model="registerForm.password" type="password" placeholder="请输入密码" clearable
+                                    show-password @keydown.enter="handleEnter" />
+                            </el-form-item>
+                            <el-form-item prop="callnumber">
+                                <el-input v-model="registerForm.callnumber" placeholder="请输入手机号" clearable
+                                    @keydown.enter="handleEnter" />
+                            </el-form-item>
+                            <el-form-item prop="publickey">
+                                <el-input v-model="registerForm.publickey" placeholder="请输入Metamask账户公钥" clearable
+                                    @focus="autoFill" @keydown.enter="handleEnter" />
+                            </el-form-item>
+                            <el-form-item prop="role" style="text-align: center;">
+                                <el-radio-group v-model="registerForm.role"
+                                    style="width: 200px; margin: 0 auto;justify-content: space-between;">
+                                    <el-radio value="user" size="large">用户</el-radio>
+                                    <el-radio value="admin" size="large">管理员</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
+                        </el-form>
+                        <!-- --------------------------------------------------------------------->
+                        <el-button color="#0060df" @click="combinedClick">
                             <div style="font-weight: 600;">注册</div>
                         </el-button>
                         <el-divider>
@@ -45,12 +73,17 @@
 </template>
 
 <script lang='ts' setup name='Register'>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 let checkTime = true
 //--------------------------------------------响应式组件数据获取--------------------------------------
-let username = ref('')
-let password = ref('')
-let publicKey = ref('')
+let registerForm = reactive({
+    userid: '',
+    username: '',
+    password: '',
+    callnumber: '',
+    publickey: '',
+    role: '',
+})
 //----------------------------------------------编程式路由导航----------------------------------------
 import { useRouter } from 'vue-router';
 const router = useRouter()
@@ -58,8 +91,53 @@ function login() {
     router.push('/login')
     // console.log(password)
 }
+//--------------------------------------------------表单验证------------------------------------------
+import type { FormInstance, FormRules } from 'element-plus'
+import { checkID } from "@/scripts/Codecheck"
+const registerFormRef = ref<FormInstance>()
+//表单验证规则
+const rules = reactive<FormRules>({
+    username: [
+        { required: true, message: '请输入用户名！', trigger: 'blur' },
+        { min: 1, max: 10, message: '请输入真实用户名！', trigger: 'blur' },
+    ],
+    userid: [
+        { required: true, message: '请输入身份证号！', trigger: 'blur' },
+        { validator: checkID, trigger: 'blur' },
+    ],
+    callnumber: [
+        { required: true, message: '请输入电话号码！', trigger: 'blur' },
+        { max: 11, message: '请输入有效电话号码', trigger: 'blur' },
+    ],
+    password: [
+        { required: true, message: '请输入密码！', trigger: 'blur' },
+        { min: 7, message: '请输入安全系数高的密码', trigger: 'blur' },
+    ],
+    publickey: [
+        { required: true, message: '请输入公钥！', trigger: 'blur' },
+    ],
+    role: [
+        { required: true, message: '请选择身份！', trigger: 'blur' },
+    ]
+})
+//下面这段我也看不太懂，大概意思就是一键验证表单
+// 反正粘过来直接用就行了
+const formcheck = async (formEl: FormInstance | undefined): Promise<boolean> => {
+    if (!formEl) return false;
+    try {
+        await formEl.validate();
+        console.log('submit!');
+        return Promise.resolve(true);
+    } catch (error) {
+        console.log('error submit!', error);
+        return Promise.reject(false);
+    }
+}
 //----------------------------------------------------方法---------------------------------------------
 // This function detects most providers injected at window.ethereum.
+import axios from "axios";
+import { ElMessage } from 'element-plus'
+//自动填充公钥
 async function autoFill() {
     if (checkTime) {
         connect()
@@ -69,10 +147,72 @@ async function autoFill() {
         fund()
     }
 }
+//像后端发送注册请求
+async function register() {
+    let registerMessage = {
+        "user_id": registerForm.userid,
+        "username": registerForm.username,
+        "password": registerForm.password,
+        "callnumber": registerForm.callnumber,
+        "publicKey": registerForm.publickey,
+        "role": registerForm.role
+    }
+    try {
+        const response = await axios.post('http://localhost:8080/register', registerMessage);
+        console.log('send successful:', response.data.data);
+        switch (response.data.code) {
+            case 200:
+                ElMessage({
+                    message: '注册成功！即将返回登录界面',
+                    type: 'success',
+                })
+                //3秒后跳转至登陆界面
+                setTimeout(() => {
+                    router.push('/login')
+                }, 3000);
+                // 可以添加其他情况的处理
+                break
+            case 1007:
+                ElMessage({
+                    message: '用户已存在！',
+                    type: 'error',
+                })
+                registerFormRef.value?.resetFields
+                break
+            case 1008:
+                ElMessage({
+                    message: '注册失败！联系管理员LRay-iu',
+                    type: 'error',
+                })
+                registerFormRef.value?.resetFields
+                break
+            default:
+                ElMessage({
+                    message: '出现异常！联系管理员LRay-iu',
+                    type: 'error',
+                })
+                registerFormRef.value?.resetFields
+                break
+        }
 
-function register(){
-    console.log({username,password})
+    } catch (error) {
+        console.error('Register failed:', error);
+        // 注册失败的处理
+    }
 }
+//组合式按键，先验证表单，再实现注册
+const combinedClick = async () => {
+    const isValid = await formcheck(registerFormRef.value);
+    if (isValid) {
+        register();
+    } else {
+        return
+    }
+}
+const handleEnter = () => {
+    // 按下回车键时执行登录操作
+    combinedClick();
+};
 //-----------------------------------------------------------用以检查浏览器有没有安装Metamask扩展----------------------------------------
 async function connect() {
     if (typeof (window as any).ethereum !== "undefined") {
@@ -91,9 +231,9 @@ async function fund() {
         //合约的ABI
         const provider = new ethers.providers.Web3Provider((window as any).ethereum) //从metamask找到了http端点，将其作为provider
         const signer = provider.getSigner()//返回metamask当前连接的钱包是哪一个
-        const address =await signer.getAddress( ) 
-        console.log(address)
-        publicKey.value =address.toString(); 
+        const address = await signer.getAddress()
+        // console.log(address)
+        registerForm.publickey = address.toString();
     }
 }
 </script>
@@ -120,8 +260,8 @@ async function fund() {
 
 .login .el-input {
     width: 414px;
-    height: 45px;
-    margin: 8px;
+    height: 42px;
+    margin: 3px;
     font-size: large;
     border-radius: 6px;
     /* border: 1px solid rgb(158, 158, 158);

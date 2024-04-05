@@ -35,7 +35,7 @@ func Tokencreate(username string) string {
 	if err != nil {
 		fmt.Println("token加密出错", err.Error())
 	}
-	fmt.Println(konohaToken)
+	//fmt.Println(konohaToken)
 	return konohaToken
 }
 

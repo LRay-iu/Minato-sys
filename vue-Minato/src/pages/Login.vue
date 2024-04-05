@@ -20,9 +20,10 @@
                 </el-header>
                 <el-main style="width:450px;height:350px">
                     <el-container style=" justify-content: center;align-items: center;" direction="vertical">
-                        <el-input v-model="username" placeholder="请输入用户名" clearable />
-                        <el-input v-model="password" type="password" placeholder="请输入密码" clearable show-password />
-                        <el-button color="#0060df" dark="#03459d">
+                        <el-input v-model="userid" placeholder="请输入用户账号（身份证号）" clearable @keydown.enter="handleEnter" />
+                        <el-input v-model="password" type="password" placeholder="请输入密码" clearable show-password
+                            @keydown.enter="handleEnter" />
+                        <el-button color="#0060df" dark="#03459d" @click="Login">
                             <div style="font-weight: 600;">登录</div>
                         </el-button>
                         <el-divider>
@@ -46,13 +47,63 @@
 
 <script lang='ts' setup name='Login'>
 import { ref } from 'vue'
-const username = ref('')
+import axios from "axios";
+const userid = ref('')
 const password = ref('')
 import { useRouter } from 'vue-router';
 const router = useRouter()
 function register() {
     router.push('/register')
 }
+//将登录信息发送至后端
+import { useLoginStore } from '@/store/loginStore'
+import { ElMessage } from 'element-plus'
+const loginStore = useLoginStore()
+async function Login() {
+    let loginMessage = {
+        user_id: userid.value,
+        password: password.value
+    }
+    try {
+        const response = await axios.post('http://localhost:8080/login', loginMessage);
+        // console.log(loginMessage)
+        console.log('send successful:', response.data.data);
+        switch (response.data.code) {
+            case 200:
+                // 登录成功后的处理
+                loginStore.Login(response.data.data)
+                loginStore.$subscribe((mutate, state) => {
+                    //mutate表示发生变化的内容
+                    console.log('loginStore内的数据发生了变化', mutate, state)
+                    localStorage.setItem('userid', state.userid)
+                    localStorage.setItem('username', state.username)
+                    localStorage.setItem('publicKey', state.publicKey)
+                    localStorage.setItem('konohaToken', state.konohaToken)
+                })
+                ElMessage({
+                    message: response.data.msg,
+                    type: 'success',
+                })
+                break
+            default:
+                //登陆失败或者异常时的处理
+                ElMessage({
+                    message: response.data.msg,
+                    type: 'error',
+                })
+                userid.value = ''
+                password.value = ""
+                break
+        }
+    } catch (error) {
+        console.error('Login failed:', error);
+        // 登录失败的处理
+    }
+}
+const handleEnter = () => {
+    // 按下回车键时执行登录操作
+    Login();
+};
 </script>
 
 <style scoped>

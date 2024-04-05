@@ -89,7 +89,7 @@ export let checkID = function (rule: any, value: any, callback: any) {
             }
         }
     } else {
-        callback(new Error("身份证号不正确"))
+        callback(new Error("请输入合法身份证号"))
         // console.log(value)
     }
 }
