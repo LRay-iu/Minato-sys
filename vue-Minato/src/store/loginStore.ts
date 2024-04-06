@@ -13,6 +13,11 @@ export const useLoginStore = defineStore("login", function login() {
         username.value = loginResult.username
         publicKey.value = loginResult.publicKey
         konohaToken.value = loginResult.konohaToken
+        // 同步更新浏览器本地存储
+        localStorage.setItem("userid", loginResult.user_id)
+        localStorage.setItem("username", loginResult.username)
+        localStorage.setItem("publicKey", loginResult.publicKey)
+        localStorage.setItem("konohaToken", loginResult.konohaToken)
     }
 
     return { userid, username, publicKey, konohaToken, Login }

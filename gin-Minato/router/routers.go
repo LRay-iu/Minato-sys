@@ -17,5 +17,6 @@ func Router() *gin.Engine {
 	r.POST("/buyinsurance", controller.PurchaseController{}.AddPurchase)
 	r.GET("/showinsurance", controller.InsuranceController{}.ShowInsurance)
 	r.POST("/update", controller.FileController{}.Updatefile)
+	r.POST("/updatesupport", controller.FileController{}.Addfile)
 	return r
 }

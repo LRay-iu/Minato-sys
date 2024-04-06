@@ -11,6 +11,7 @@ type ClaimController struct {
 }
 type NewClaim struct {
 	ClaimController
+	ClaimId        string `json:"claim_id"`
 	ClaimUser      string `json:"claim_user"`
 	ClaimInsurance int    `json:"claim_insurance"`
 	Callnumber     string `json:"callnumber"`
@@ -33,6 +34,7 @@ func (c ClaimController) AddClaim(ctx *gin.Context) {
 		return
 	}
 	code := model.AddClaim(
+		newclaim.ClaimId,
 		config.EncryMd5(newclaim.ClaimUser),
 		newclaim.ClaimInsurance,
 		newclaim.Callnumber,

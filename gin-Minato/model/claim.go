@@ -6,7 +6,7 @@ import (
 )
 
 type Claim struct {
-	ClaimId        int     `gorm:"column:claim_id;"`
+	ClaimId        string  `gorm:"column:claim_id;"`
 	ClaimUser      string  `gorm:"column:claim_user"`
 	ClaimInsurance int     `gorm:"column:claim_insurance"`
 	Callnumber     string  `gorm:"column:callnumber"`
@@ -30,13 +30,14 @@ func FindClaimById(claimid int) (Claim, error) {
 	return claim, err
 }
 
-func AddClaim(claimuser string, claiminsurance int, Callnumber string, carid string, region string, createtime string) int {
+func AddClaim(claimid string, claimuser string, claiminsurance int, Callnumber string, carid string, region string, createtime string) int {
 	//_, err := FindClaimById(claimid)
 	//if err != nil && err.Error() != "record not found" {
 	//	fmt.Println("注册查询出错：", err.Error())
 	//}
 	//if err.Error() == "record not found" {
 	var newClaim = Claim{
+		ClaimId:        claimid,
 		ClaimUser:      claimuser,
 		ClaimInsurance: claiminsurance,
 		Callnumber:     Callnumber,

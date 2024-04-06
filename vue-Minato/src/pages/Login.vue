@@ -75,15 +75,15 @@ async function Login() {
                 loginStore.$subscribe((mutate, state) => {
                     //mutate表示发生变化的内容
                     console.log('loginStore内的数据发生了变化', mutate, state)
-                    localStorage.setItem('userid', state.userid)
-                    localStorage.setItem('username', state.username)
-                    localStorage.setItem('publicKey', state.publicKey)
-                    localStorage.setItem('konohaToken', state.konohaToken)
                 })
                 ElMessage({
                     message: response.data.msg,
                     type: 'success',
                 })
+                //3秒后跳转至登陆界面
+                setTimeout(() => {
+                    router.push('/')
+                }, 500);
                 break
             default:
                 //登陆失败或者异常时的处理

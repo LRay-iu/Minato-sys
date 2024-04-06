@@ -7,14 +7,27 @@
                 <div>
                     您好，欢迎来到水门车险！
                 </div>
-                <el-space direction="horizontal" alignment="start" :size="15">
-                    <el-link :underline="false" @click="Login" style="margin-left: 25px;font-size: 15px;">登录</el-link>
-                    <div style="margin-left: 5px;">
-                        |
+                <!-- 如果注册了 -->
+                <template v-if="loginStore.konohaToken">
+                    <div style="margin-left: 5px;" v-if="loginStore.konohaToken != ''">
+                        尊敬的&nbsp;&nbsp;{{ loginStore.username }}&nbsp;&nbsp;先生
                     </div>
-                    <el-link :underline="false" @click="Register"
-                        style="margin-left: 15px;font-size: 15px;">注册</el-link>
-                </el-space>
+                    <el-link :underline="false" @click="Logout" style="margin-left: 15px;font-size: 15px;">
+                        退出登录
+                    </el-link>
+                </template>
+                <!-- 判断用户是否注册，如果没有注册 -->
+                <template v-else>
+                    <el-space direction="horizontal" alignment="start" :size="15">
+                        <el-link :underline="false" @click="Login"
+                            style="margin-left: 25px;font-size: 15px;">登录</el-link>
+                        <div style="margin-left: 5px;">
+                            |
+                        </div>
+                        <el-link :underline="false" @click="Register"
+                            style="margin-left: 15px;font-size: 15px;">注册</el-link>
+                    </el-space>
+                </template>
             </el-space>
             <el-space direction="horizontal" alignment="start" :size="20">
                 <div>如有意外,联系作者</div>
@@ -86,6 +99,8 @@
 
 <script lang='ts' setup>
 import { useRouter } from 'vue-router';
+import { useLoginStore } from '@/store/loginStore'
+const loginStore = useLoginStore()
 const router = useRouter()
 
 // el-menu的属性定义
@@ -101,7 +116,10 @@ function Login() {
 function Register() {
     router.push('/register')
 }
-
+function Logout() {
+    localStorage.clear();
+    location.reload();
+}
 function SUES() {
     // window.open("https://www.sues.edu.cn/");//新窗口打开
     window.location.href = "https://www.sues.edu.cn/";//当前窗口打开
