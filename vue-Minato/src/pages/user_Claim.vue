@@ -96,11 +96,11 @@ const claimFormRef = ref<FormInstance>()
 // 初始化各项数据，其中insuranceid不论怎么写最终读取都是字符串格式
 // 因此不必过多纠结，打包的时候将其转换成number类型即可
 const claimForm = reactive<ClaimForm>({
-    claimId: nanoid(),
+    claimid: nanoid(),
     username: "",
     userid: "",
     callnumber: "",
-    insuranceid: null as number,
+    insuranceid: '',
     carid: "",
     region: "",
     date: "",
@@ -183,7 +183,7 @@ const beforeClaimfileUpload: UploadProps["beforeUpload"] = (rawFile) => {
 }
 // 监听上传组件的 change 事件，只要一有文件被加进来就会触发
 //目的是为了获取上传的文件名并就将其保存在claimForm.claimfile[]这个数组中
-const handleChange = (file, fileList) => {
+const handleChange = (file:any, fileList:any) => {
     // 获取第一个文件的文件名
     if (fileList.length > 0) {
         for (let i = 0; i < fileList.length; i++) {
@@ -191,7 +191,7 @@ const handleChange = (file, fileList) => {
             // console.log("上传文件为", claimForm.claimfile[i])
         }
     } else {
-        claimForm.claimfile = ''
+        claimForm.claimfile[0] = ''
     }
 }
 //--------------------------------------------------表单提交---------------------------------------------------
@@ -203,44 +203,30 @@ import { useRouter } from 'vue-router';
 const router = useRouter()
 const uploadRef = ref<UploadInstance>()
 //功能是对提交表单的补充，目的是上传文件并将上传的文件名，绑定的申报单号发送至后端
-const submitUpload = async() => {
+const submitUpload = () => {
     uploadRef.value!.submit()
     let fileMessage = {
         "filename": claimForm.claimfile,
-        "file_according": claimForm.claimId,
+        "file_according": claimForm.claimid,
         "createtime": claimForm.date
     }
     // console.log("修改表单内容为", fileMessage)
-    try {
-        const response = await axios.post(
+    setTimeout(async () => {
+        await axios.post(
             "http://localhost:8080/updatesupport",
             fileMessage,
         )
-        // console.log("send successful:", response.data.data)
-        switch (response.data.code) {
-            case 200:
-                break
-            case 2001:
-                ElMessage({
-                    message: "修改失败！",
-                    type: "error",
-                })
-                console.log(response.data.code)
-                break
-            default:
-                break
-        }
-    } catch (error) {
-        console.error("Claim failed:", error)
-        // 注册失败的处理
-    }
+    }, 200)
+
+    // console.log("send successful:", response.data.data)
+
 
 }
 //通过验证后提交表单
 async function submitClaimForm() {
     //打包表单内容
     let claimMessage = {
-        claim_id: claimForm.claimId,
+        claim_id: claimForm.claimid,
         claim_user: claimForm.userid,
         claim_insurance: parseInt(claimForm.insuranceid),
         callnumber: claimForm.callnumber,
@@ -265,7 +251,7 @@ async function submitClaimForm() {
                 //3秒后跳转至登陆界面
                 setTimeout(() => {
                     router.push("/3-2")
-                }, 500)
+                }, 300)
                 // 可以添加其他情况的处理
                 break
             case 2001:

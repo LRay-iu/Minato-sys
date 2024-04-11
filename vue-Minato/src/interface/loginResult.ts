@@ -3,4 +3,5 @@ export interface LoginResult {
     username: string
     publicKey: string
     konohaToken: string
+    role: string
 }

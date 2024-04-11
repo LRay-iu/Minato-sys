@@ -83,3 +83,7 @@ func Login(userid string, password string) (int, User, string) {
 	}
 
 }
+
+//func GetPublicKeyById(userid string) string {
+//
+//}

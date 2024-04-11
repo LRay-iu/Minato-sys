@@ -80,10 +80,10 @@ async function Login() {
                     message: response.data.msg,
                     type: 'success',
                 })
-                //3秒后跳转至登陆界面
+                //0.2秒后跳转至登陆界面
                 setTimeout(() => {
                     router.push('/')
-                }, 500);
+                }, 200);
                 break
             default:
                 //登陆失败或者异常时的处理

@@ -216,10 +216,10 @@ import { ElMessage } from "element-plus"
 async function autoFill() {
     if (checkTime) {
         connect()
-        fund()
+        getPublicKey()
         checkTime = false
     } else {
-        fund()
+        getPublicKey()
     }
 }
 //像后端发送注册请求
@@ -244,10 +244,10 @@ async function register() {
                     message: "注册成功！即将返回登录界面",
                     type: "success",
                 })
-                //3秒后跳转至登陆界面
+                //0.5秒后跳转至登陆界面
                 setTimeout(() => {
                     router.push("/login")
-                }, 3000)
+                }, 500)
                 // 可以添加其他情况的处理
                 break
             case 1007:
@@ -301,7 +301,7 @@ async function connect() {
     }
 }
 import { ethers } from "@/scripts/ethers-5.7.esm.min.js"
-async function fund() {
+async function getPublicKey() {
     // console.log(ethAccount)
     if (typeof (window as any).ethereum !== "undefined") {
         //连接到区块链

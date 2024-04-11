@@ -66,7 +66,27 @@ func (c ClaimController) UpdateClaim(ctx *gin.Context) {
 }
 
 func (c ClaimController) ShowClaim(ctx *gin.Context) {
-	result, code := model.ShowClaim()
+	userid := ctx.Param("userid")
+	result, code := model.ShowClaim(userid)
+	if code != 200 {
+		config.ReturnFalse(ctx, code, "查询失败")
+	} else {
+		config.ReturnSuccess(ctx, code, "查询成功", result, 1)
+	}
+}
+
+func (c ClaimController) ShowAllClaims(ctx *gin.Context) {
+	result, code := model.ShowAllClaim()
+	if code != 200 {
+		config.ReturnFalse(ctx, code, "查询失败")
+	} else {
+		config.ReturnSuccess(ctx, code, "查询成功", result, 1)
+	}
+}
+
+func (c ClaimController) ShowClaimDetail(ctx *gin.Context) {
+	claimid := ctx.Param("claimid")
+	result, code := model.ClaimDetail(claimid)
 	if code != 200 {
 		config.ReturnFalse(ctx, code, "查询失败")
 	} else {

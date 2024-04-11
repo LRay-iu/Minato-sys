@@ -3,7 +3,7 @@ export interface ClaimForm {
     username: string
     userid: string
     callnumber: string
-    insuranceid: number | null
+    insuranceid: string
     carid: string
     region: string
     date: string
@@ -12,12 +12,10 @@ export interface ClaimForm {
 export interface ClaimResult {
     claimid: string
     username: string
-    userid: string
     callnumber: string
-    insuranceid: number | null
+    insuranceid: string
     carid: string
     region: string
     date: string
     status: number
-    compensation: number
 }

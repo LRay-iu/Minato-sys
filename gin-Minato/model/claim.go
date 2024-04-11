@@ -79,17 +79,129 @@ func UpdateStatus(claimid int, compensation float64) int {
 	}
 }
 
-func ShowClaim() ([]Claim, int) {
-	var claims []Claim
-	err := DB.Find(&claims).Error
+func ShowClaim(userid string) ([]map[string]interface{}, int) {
+	var claims []map[string]interface{}
+	//err := DB.Table("claim").Preload("User").Where("claim_user = ?", userid).Find(&claims).Error
+	err := DB.Model(&Claim{}).
+		Where("claim_user=?", userid).
+		Select("claim.claim_id",
+			"user.role",
+			" user.user_name",
+			"claim.callnumber",
+			"claim.claim_insurance",
+			"claim.car_id",
+			"claim.region",
+			"claim.createtime",
+			"claim.status",
+			"claim.compensation").
+		Joins("left join user on claim.claim_user=user.user_id").Scan(&claims).Error
+
+	// 修改 claims 切片中的键名
+	for _, claim := range claims {
+		claim["claimid"] = claim["claim_id"]
+		delete(claim, "claim_id")
+		claim["username"] = claim["user_name"]
+		delete(claim, "user_name")
+		claim["insuranceid"] = claim["claim_insurance"]
+		delete(claim, "claim_insurance")
+		claim["carid"] = claim["car_id"]
+		delete(claim, "car_id")
+		claim["date"] = claim["createtime"]
+		delete(claim, "createtime")
+	}
 	if err != nil {
 		if err == gorm.ErrRecordNotFound {
-			return []Claim{}, 200
+			return []map[string]interface{}{}, 200
 		} else {
-			fmt.Println("保险查询出错：", err.Error())
-			return []Claim{}, 3003
+			fmt.Println("申报查询出错：", err.Error())
+			return []map[string]interface{}{}, 3003
 		}
 	} else {
 		return claims, 200
+	}
+}
+
+// 展示所有代办申报
+func ShowAllClaim() ([]map[string]interface{}, int) {
+	var claims []map[string]interface{}
+	err := DB.Model(&Claim{}).
+		Where("status=?", 1).
+		Where("isvisual=?", 1).
+		Select("claim.claim_id",
+			"user.role",
+			" user.user_name",
+			"claim.callnumber",
+			"claim.claim_insurance",
+			"claim.car_id",
+			"claim.region",
+			"claim.createtime",
+			"claim.status",
+			"claim.compensation").
+		Joins("left join user on claim.claim_user=user.user_id").Scan(&claims).Error
+
+	// 修改 claims 切片中的键名
+	for _, claim := range claims {
+		claim["claimid"] = claim["claim_id"]
+		delete(claim, "claim_id")
+		claim["username"] = claim["user_name"]
+		delete(claim, "user_name")
+		claim["insuranceid"] = claim["claim_insurance"]
+		delete(claim, "claim_insurance")
+		claim["carid"] = claim["car_id"]
+		delete(claim, "car_id")
+		claim["date"] = claim["createtime"]
+		delete(claim, "createtime")
+	}
+	if err != nil {
+		if err == gorm.ErrRecordNotFound {
+			return []map[string]interface{}{}, 200
+		} else {
+			fmt.Println("申报查询出错：", err.Error())
+			return []map[string]interface{}{}, 3003
+		}
+	} else {
+		fmt.Println("claims is", claims)
+		return claims, 200
+	}
+}
+
+// 展示申报细节
+func ClaimDetail(claimid string) (map[string]interface{}, int) {
+	var claim map[string]interface{}
+	err := DB.Model(&Claim{}).
+		Where("claim_id=?", claimid).
+		Select("claim.claim_id",
+			"user.role",
+			" user.user_name",
+			" user.publicKey",
+			"claim.callnumber",
+			"claim.claim_insurance",
+			"claim.car_id",
+			"claim.region",
+			"claim.createtime",
+			"claim.status",
+			"claim.compensation").
+		Joins("left join user on claim.claim_user=user.user_id").Scan(&claim).Error
+	// 修改 claims 切片中的键名
+	claim["claimid"] = claim["claim_id"]
+	delete(claim, "claim_id")
+	claim["username"] = claim["user_name"]
+	delete(claim, "user_name")
+	claim["insuranceid"] = claim["claim_insurance"]
+	delete(claim, "claim_insurance")
+	claim["carid"] = claim["car_id"]
+	delete(claim, "car_id")
+	claim["date"] = claim["createtime"]
+	delete(claim, "createtime")
+	if err != nil {
+		if err == gorm.ErrRecordNotFound {
+			return map[string]interface{}{}, 200
+		} else {
+			fmt.Println("申报查询出错：", err.Error())
+			return map[string]interface{}{}, 3003
+		}
+	} else {
+		fmt.Println("claim is", claim)
+		return claim, 200
 	}
 }

@@ -32,6 +32,7 @@ type UserReturn struct {
 	Username    string `json:"username"`
 	PublicKey   string `json:"publicKey"`
 	KonohaToken string `json:"konohaToken"`
+	Role        string `json:"role"`
 }
 
 func (u UserController) Register(ctx *gin.Context) {
@@ -84,6 +85,7 @@ func (u UserController) Login(ctx *gin.Context) {
 			Username:    user.Username,
 			PublicKey:   user.PublicKey,
 			KonohaToken: konohaToken,
+			Role:        user.Role,
 		}
 		fmt.Println("key:", user.PublicKey)
 		config.ReturnSuccess(ctx, 200, "登录成功", userReturn, 1)

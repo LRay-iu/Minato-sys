@@ -4,13 +4,12 @@
         <el-container class="Maincontent">
             <ClaimSide />
             <el-container direction="vertical" class="content">
-                <el-table :data="filterTableData" style="width: 100%;font-size: 15px;" size="large">
+                <el-table :data="filterTableData " style="width: 100%;font-size: 15px;" size="large">
                     <el-table-column type="expand">
                         <template #default="props">
                             <div style="display: flex;justify-content: center;">
                                 <el-table :data="[props.row]" height:15px size="small" style="width:65%" :border="true">
                                     <el-table-column label="用户名" prop="username" />
-                                    <el-table-column label="身份证号" prop="userid" />
                                     <el-table-column label="联系方式" prop="callnumber" />
                                     <el-table-column label="保险单号" prop="insuranceid" />
                                     <el-table-column label="车牌号" prop="carid" />
@@ -35,12 +34,8 @@
                     <el-table-column label="地区" prop="region" />
                     <el-table-column align="right">
                         <template #header>
-                            <el-input v-model="search" class="search" size="default" placeholder="Type to search"
+                            <el-input v-model="search" class="search" size="default" placeholder="输入理赔单号"
                                 :prefix-icon="Search" />
-                        </template>
-                        <template #default="scope">
-                            <el-button @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-                            <el-button type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -57,8 +52,7 @@ import PageTop from "@/components/PageTop.vue"
 import PageBotton from "@/components/PageBotton.vue"
 import ClaimSide from "@/components/ClaimSide.vue"
 import { Search } from '@element-plus/icons-vue'
-import { computed, ref } from 'vue'
-import { type ClaimResult } from "@/interface/claimForm"
+import { computed } from 'vue'
 // interface User {
 //     date: string
 //     name: string
@@ -66,71 +60,49 @@ import { type ClaimResult } from "@/interface/claimForm"
 // }
 
 const search = ref('')
+
+//-------------------------------------向后端访问数据--------------------------------
+import { ref, onBeforeMount } from "vue";
+import axios from "axios";
+import { ElMessage } from "element-plus";
+import { type ClaimResult } from "@/interface/claimForm";
+
+const tableData = ref<ClaimResult[]>([]);
 const filterTableData = computed(() =>
-    tableData.filter(
+    tableData.value.filter(
         (data) =>
             !search.value ||
             data.claimid.toLowerCase().includes(search.value.toLowerCase())
     )
 )
-const handleEdit = (index: number, row: ClaimResult) => {
-    console.log(index, row)
-}
-const handleDelete = (index: number, row: ClaimResult) => {
-    console.log(index, row)
-}
+onBeforeMount(async () => {
+    fetchData();
+    setTimeout(() => {}, 500)
+   
+});
 
-const tableData: ClaimResult[] = [
-    {
-        claimid: 'CLM001',
-        username: 'Tom',
-        userid: '001',
-        callnumber: '123456789',
-        insuranceid: 1,
-        carid: 'CAR001',
-        region: 'New York',
-        date: '2016-05-03',
-        status: 4,
-        compensation: 5000,
-    },
-    {
-        claimid: 'CLM002',
-        username: 'John',
-        userid: '002',
-        callnumber: '987654321',
-        insuranceid: 2,
-        carid: 'CAR002',
-        region: 'Chicago',
-        date: '2016-05-02',
-        status: 3,
-        compensation: 770,
-    },
-    {
-        claimid: 'CLM003',
-        username: 'Morgan',
-        userid: '003',
-        callnumber: '456789123',
-        insuranceid: 3,
-        carid: 'CAR003',
-        region: 'San Francisco',
-        date: '2016-05-04',
-        status: 2,
-        compensation: 660,
-    },
-    {
-        claimid: 'CLM004',
-        username: 'Jessy',
-        userid: '004',
-        callnumber: '789123456',
-        insuranceid: 4,
-        carid: 'CAR004',
-        region: 'Los Angeles',
-        date: '2016-05-01',
-        status: 1,
-        compensation: 7500,
-    },
-];
-
+async function fetchData() {
+    try {
+        const response = await axios.get('http://localhost:8080/showclaim/' + localStorage.getItem("userid"));
+        switch (response.data.code) {
+            case 200:
+                tableData.value = response.data.data;
+                setTimeout(()=>{console.log("tabledata怎么你了",tableData.value)},5000)
+                break;
+            case 3003:
+                ElMessage({
+                    message: "申报查询失败！",
+                    type: "error",
+                });
+                break;
+            default:
+                break;
+        }
+    } catch (error) {
+        console.error("query failed:", error);
+        // 查询失败的处理
+    }
+}
 
 
 </script>
@@ -138,10 +110,12 @@ const tableData: ClaimResult[] = [
 <style scoped>
 .Maincontent {
     height: 100vh;
+    width: 100%;
 }
 
 .content {
     padding: 20px 50px 70px 50px;
+    min-height: 100vh;
     /* border: 2px blue solid; */
 }
 

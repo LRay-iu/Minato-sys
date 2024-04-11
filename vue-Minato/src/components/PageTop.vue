@@ -42,7 +42,9 @@
             <img src="../assets/logo/minato_logo2.png" alt="" style="width:160px;height:60px">
         </div>
         <el-menu-item index="/">首页</el-menu-item>
-        <el-sub-menu index="2">
+        <!-- ------------------------------------------如果是用户 ------------------------------------------------->
+        <template v-if="loginStore.role=='user'">
+            <el-sub-menu index="2">
             <template #title>
                 <el-container style="height: 78px;align-items: center;">服务中心</el-container>
             </template>
@@ -88,8 +90,38 @@
                 <span>&nbsp; 理赔资料下载</span>
             </el-menu-item>
         </el-sub-menu>
-
-        <el-menu-item index="/4">车友圈</el-menu-item>
+        </template>
+       <!-- ------------------------------------------如果是管理员 ------------------------------------------------->
+       <template v-if="loginStore.role=='admin'">
+            <el-sub-menu index="2">
+            <template #title>
+                <el-container style="height: 78px;align-items: center;">数据中心</el-container>
+            </template>
+            <el-menu-item index="/2-4">
+                <el-icon>
+                    <ShoppingCart />
+                </el-icon>
+                <span>&nbsp; 车险流水</span>
+            </el-menu-item>
+            <el-menu-item index="/2-5">
+                <el-icon>
+                    <Search />
+                </el-icon>
+                <span>&nbsp; 流程查询</span>
+            </el-menu-item>
+        </el-sub-menu>
+        <el-sub-menu index="3">
+            <template #title>
+                <el-container style="height: 78px;align-items: center;">待办流程</el-container>
+            </template>
+            <el-menu-item index="/3-4">
+                <el-icon>
+                    <Coin />
+                </el-icon>
+                <span>&nbsp; 理赔审批</span>
+            </el-menu-item>
+        </el-sub-menu>
+        </template>
         <div style="margin-left: 80px;margin-right: 25px;">
             <img src="../assets/logo/SUES.png" alt="" style="width:220px;height:78px" @click="SUES" />
         </div>
@@ -118,7 +150,9 @@ function Register() {
 }
 function Logout() {
     localStorage.clear();
-    location.reload();
+    setTimeout(() => {
+        router.push("/login")
+    }, 500)
 }
 function SUES() {
     // window.open("https://www.sues.edu.cn/");//新窗口打开
