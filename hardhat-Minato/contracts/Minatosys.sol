@@ -10,7 +10,7 @@ error NotOwner();
 contract Minatosys {
     using PriceConverter for uint256;
     uint256 constant minimumUsd = 0;
-    address immutable i_owner;
+    address public immutable i_owner;
     AggregatorV3Interface public priceFeed;
 
     constructor(address priceFeedAddress) {

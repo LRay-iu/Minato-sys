@@ -7,28 +7,30 @@
     <list default="true" id="90d3190c-a6c9-4008-9195-fda267aa2664" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/claim.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/claim.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/claimFile.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/claimFile.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/errorCode.txt" beforeDir="false" afterPath="$PROJECT_DIR$/errorCode.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/claim.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/claim.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/claimfile.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/claimfile.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router/routers.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/routers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/runner-build.exe" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/runner-build.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/3Yxhb8bzjQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/BbePoUChxX.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/p02bkWKhlD.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/components/ClaimSide.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/components/ClaimSide.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/components/InsuranceSide.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/components/InsuranceSide.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/components/PageTop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/components/PageTop.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/interface/claimForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/interface/claimForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/interface/loginResult.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/interface/loginResult.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/pages/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/pages/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/pages/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/pages/user_Claim.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/pages/user_Claim.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/pages/user_ClaimQuery.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/pages/user_ClaimQuery.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/store/loginStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/store/loginStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/7HcfzICEUK.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/7vNqCvWIab.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/GAIPEG1MXx.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/HExbdjjxBY.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/HQAq0nwUZZ.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/LXQM1Eac5v.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/Q2NrGgK1Wy.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/WDSAThRYD0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/WtdgEXynPW.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/aJDLJzfCj8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/bQoLBIcAC7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/ohTJg2UKU8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/qMLddEC6bU.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/qkUBDmqMCB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/rXsM6qyqRJ.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/soMf6xxDk0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/srR3KkHSK0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/vWJDUoQ0E0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/whiuwjxTuK.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/wsRKq4myiR.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/znqRq1DfIk.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,14 +88,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build gin-Minato/middleware">
-    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
-      <module name="gin-Minato" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
     <configuration name="go build dao.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="gin-Minato" />
       <working_directory value="$PROJECT_DIR$" />
@@ -117,15 +111,6 @@
       <kind value="FILE" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/main.go" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
-      <module name="gin-Minato" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="DIRECTORY" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
       <method v="2" />
     </configuration>
     <recent_temporary>

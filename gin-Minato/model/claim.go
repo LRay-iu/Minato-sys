@@ -54,7 +54,7 @@ func AddClaim(claimid string, claimuser string, claiminsurance int, Callnumber s
 }
 
 // 修改claim的status状态
-func UpdateStatus(claimid int, compensation float64) int {
+func UpdateStatus(claimid string, compensation float64) int {
 	var claim Claim
 	err := DB.Where("claim_id=?", claimid).First(&claim).Error
 	if err != nil {
@@ -93,6 +93,7 @@ func ShowClaim(userid string) ([]map[string]interface{}, int) {
 			"claim.region",
 			"claim.createtime",
 			"claim.status",
+			"claim.address",
 			"claim.compensation").
 		Joins("left join user on claim.claim_user=user.user_id").Scan(&claims).Error
 
@@ -203,5 +204,30 @@ func ClaimDetail(claimid string) (map[string]interface{}, int) {
 	} else {
 		fmt.Println("claim is", claim)
 		return claim, 200
+	}
+}
+
+func AddressUpdate(claimid string, address string) int {
+	var claim Claim
+	err := DB.Where("claim_id=?", claimid).First(&claim).Error
+	if err != nil {
+		if err == gorm.ErrRecordNotFound {
+			fmt.Println("claim记录未查询到:", err.Error())
+			return 2003
+		} else {
+			fmt.Println("claim记录查询出错:", err.Error())
+			return 2999
+		}
+	} else {
+		claim.Status = 4
+		claim.Address = address
+		fmt.Println(claim)
+		err := DB.Model(&Claim{}).Where("claim_id = ?", claimid).Updates(&claim).Error
+		if err != nil {
+			fmt.Println("数据库修改：", err.Error)
+			return 2004
+		} else {
+			return 200
+		}
 	}
 }

@@ -16,6 +16,7 @@
                                     <el-table-column label="赔偿金额" prop="compensation" />
                                 </el-table>
                             </div>
+                            <div style="margin:30px 0 0 200px ;font-size: smaller;">交易地址：{{ props.row.address }}</div>
                             <!-- 步骤条 -->
                             <div style="display: flex;justify-content: center;width:100%;margin: 20px;">
                                 <el-steps style="width: 600px" :space="200" :active="props.row.status"

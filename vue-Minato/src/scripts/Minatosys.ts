@@ -3,7 +3,8 @@
 // 可以优化scripts中代码过于冗余的问题
 import { ethers } from "@/scripts/ethers-5.7.esm.min.js"
 import { abi, contractAddress } from "./constants"
-
+// 假设 1 人民币 = 39,583,333,333,333 wei
+const RMB_TO_WEI_RATE = BigInt("39583333333333")
 const provider = new ethers.providers.Web3Provider((window as any).ethereum)
 const signer = provider.getSigner()
 //创建智能合约实例
@@ -20,16 +21,24 @@ async function connect() {
     }
 }
 //管理员转账
-async function compensation(toAddress: any, amountInWei: BigInt) {
+import { updateAddress } from "./claim_helper"
+
+async function compensation(
+    toAddress: any,
+    amountInCNY: number,
+    claimid: string,
+) {
+    let amountInWei: BigInt = BigInt(amountInCNY) * RMB_TO_WEI_RATE
     console.log("Funding with", toAddress)
     if (typeof (window as any).ethereum !== "undefined") {
-        const ownerAddress = await contract.i_owner()
+        // const ownerAddress = await contract.i_owner()
         const tx = await contract.withdrawToAddress(
             toAddress,
             ethers.BigNumber.from(amountInWei),
         )
         // const tx = await contract.withdraw()
         await tx.wait()
+        updateAddress(tx.hash, claimid)
         console.log("Transaction successful")
     } else {
         console.log("No metamask!")

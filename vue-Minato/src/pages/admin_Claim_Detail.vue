@@ -225,19 +225,28 @@ async function fetchFile() {
 //------------------------------后续，提交交易表单---------------------------------
 import { ElMessage, ElMessageBox } from 'element-plus'
 import {compensation} from '@/scripts/Minatosys'
+import {updateCompensation} from '@/scripts/claim_helper'
+import { useRouter } from "vue-router"
+const router = useRouter()
 const open = () => {
-    ElMessageBox.prompt('请输入赔偿金额', '确认', {
+    ElMessageBox.prompt('请输入赔偿金额（元）', '确认', {
         confirmButtonText: '交易执行',
         cancelButtonText: '取消',
         inputErrorMessage: 'Invalid Email',
     })
         .then(({ value }) => {
-            // console.log(typeof(tableData.value.publicKey),typeof(parseFloat(value)))
-            compensation(tableData.value.publicKey,BigInt(value))
+            const updatePromise = updateCompensation(parseFloat(value), tableData.value.claimid);
+            const compenstationPromise = compensation(tableData.value.publicKey, BigInt(value), tableData.value.claimid);
             ElMessage({
                 type: 'success',
                 message: `正在建立交易，请稍后`,
-            })
+            });
+            return Promise.all([updatePromise, compenstationPromise]);
+        })
+        .then(() => {
+            setTimeout(() => {
+                router.push("/3-4");
+            }, 3000);
         })
         .catch(() => {
             ElMessage({

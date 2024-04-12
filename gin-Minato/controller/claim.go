@@ -21,8 +21,14 @@ type NewClaim struct {
 }
 type ClaimId struct {
 	ClaimController
-	ClaimId      int     `json:"claim_id"`
+	ClaimId      string  `json:"claim_id"`
 	Compensation float64 `json:"compensation"`
+}
+
+type AddressUpdate struct {
+	ClaimController
+	ClaimId string `json:"claim_id"`
+	Address string `json:"address"`
 }
 
 func (c ClaimController) AddClaim(ctx *gin.Context) {
@@ -91,5 +97,21 @@ func (c ClaimController) ShowClaimDetail(ctx *gin.Context) {
 		config.ReturnFalse(ctx, code, "查询失败")
 	} else {
 		config.ReturnSuccess(ctx, code, "查询成功", result, 1)
+	}
+}
+
+func (c ClaimController) AddressUpdate(ctx *gin.Context) {
+	claim := AddressUpdate{}
+	err := ctx.BindJSON(&claim)
+	if err != nil {
+		fmt.Println("申报模块数据绑定失效：", err)
+		config.ReturnFalse(ctx, 400, "数据绑定失败")
+		return
+	}
+	code := model.AddressUpdate(claim.ClaimId, claim.Address)
+	if code == 200 {
+		config.ReturnSuccess(ctx, code, "进度加一", claim, 1)
+	} else {
+		config.ReturnFalse(ctx, code, "进度添加失败")
 	}
 }
