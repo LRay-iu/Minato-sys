@@ -10,6 +10,7 @@ import userInsuranceQuery from "@/pages/user_InsuranceQuery.vue"
 import adminClaim from "@/pages/admin_Claim.vue"
 import adminClaimDetail from "@/pages/admin_Claim_Detail.vue"
 import { ElMessage } from "element-plus"
+import adminSearch from "@/pages/admin_Search.vue"
 Request
 //创建路由器
 const router = createRouter({
@@ -68,6 +69,28 @@ const router = createRouter({
                     } else {
                         ElMessage({
                             message: "您不能这么做！",
+                            type: "error",
+                        })
+                        setTimeout(() => {
+                            router.push("login")
+                        }, 1000)
+                    }
+                } else {
+                    next()
+                }
+            },
+        },
+        {
+            name: "userInsuranceQuery",
+            path: "/2-5",
+            component: adminSearch,
+            beforeEnter: (to, from, next) => {
+                if (localStorage.getItem("role") != "admin") {
+                    if (to.name == "login") {
+                        next()
+                    } else {
+                        ElMessage({
+                            message: "权限不足！",
                             type: "error",
                         })
                         setTimeout(() => {

@@ -22,5 +22,6 @@ func Router() *gin.Engine {
 	r.GET("/showclaims/", controller.ClaimController{}.ShowAllClaims)
 	r.GET("/showclaimfile/:claimid", controller.FileController{}.Getfile)
 	r.POST("/updateaddress", controller.ClaimController{}.AddressUpdate)
+	r.GET("/showallrecords", controller.ClaimController{}.ShowAllRecords)
 	return r
 }

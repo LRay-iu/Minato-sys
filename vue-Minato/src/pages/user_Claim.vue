@@ -173,6 +173,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 //上传前会对文件进行检查，只允许jpg格式的文件上传至后端
 const beforeClaimfileUpload: UploadProps["beforeUpload"] = (rawFile) => {
     if (rawFile.type !== "image/jpeg") {
+        console.log(rawFile)
         ElMessage.error("图片仅支持jpeg格式")
         return false
     } else if (rawFile.size / 1024 / 1024 > 5) {
@@ -185,6 +186,9 @@ const beforeClaimfileUpload: UploadProps["beforeUpload"] = (rawFile) => {
 //目的是为了获取上传的文件名并就将其保存在claimForm.claimfile[]这个数组中
 const handleChange = (file:any, fileList:any) => {
     // 获取第一个文件的文件名
+    if (!beforeClaimfileUpload(file.raw)) {
+        return;
+      }
     if (fileList.length > 0) {
         for (let i = 0; i < fileList.length; i++) {
             claimForm.claimfile[i] = fileList[i].name
@@ -275,6 +279,7 @@ async function submitClaimForm() {
     }
 }
 const combinedClick = async () => {
+    console.log(uploadRef.value)
     //这里先经过表单验证，通过后会像后端开始发送json报文
     const isValid = await formcheck(claimFormRef.value)
     if (isValid) {

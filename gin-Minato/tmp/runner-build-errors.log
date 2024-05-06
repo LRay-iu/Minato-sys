@@ -1,0 +1,8 @@
+# gin-Minato/router
+router\routers.go:14:33: undefined: controller.ClaimController
+router\routers.go:15:37: undefined: controller.ClaimController
+router\routers.go:16:41: undefined: controller.ClaimController
+router\routers.go:21:48: undefined: controller.ClaimController
+router\routers.go:22:35: undefined: controller.ClaimController
+router\routers.go:24:38: undefined: controller.ClaimController
+router\routers.go:25:38: undefined: controller.ClaimController

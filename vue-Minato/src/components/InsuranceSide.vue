@@ -47,7 +47,7 @@
     </div>
 </template>
 
-<script lang='ts' setup name=''>
+<script lang='ts' setup name='InsuranceSide'>
 import { useLoginStore } from '@/store/loginStore'
 const loginStore = useLoginStore()
 </script>

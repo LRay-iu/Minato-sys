@@ -25,8 +25,8 @@ func Tokencreate(username string) string {
 		Username: username,
 		StandardClaims: jwt.StandardClaims{
 			NotBefore: time.Now().Unix() - 60,
-			//设置过期时间在60秒后
-			ExpiresAt: time.Now().Unix() + 60,
+			//设置过期时间在一天后
+			ExpiresAt: time.Now().Unix() + 60*60*24,
 			Issuer:    "Minato",
 		},
 	}

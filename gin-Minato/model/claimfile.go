@@ -27,7 +27,7 @@ func AddClaimfile(filename string, filepath string, fileaccording string, create
 	err := DB.Where(newFile).FirstOrCreate(&newFile).Error
 	if err != nil {
 		// 如果错误不为空，表示存在相同的内容
-		fmt.Println("存在相同的内容：", err.Error)
+		fmt.Println("存在相同的内容：", err.Error())
 		return 2002
 	} else {
 		// 如果错误为空，表示不存在相同的内容，或者成功创建了新的记录
