@@ -5,23 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90d3190c-a6c9-4008-9195-fda267aa2664" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/controller/claim.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/claim.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/claim.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/claim.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/claimfile.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/claimfile.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/routers.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/routers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/runner-build.exe" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/runner-build.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/ARbDwnAw1A.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/AxV2TVX8e9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/Ci85sBz8OA.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/ZgiKBCNn3O.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hardhat-Minato/deploy/01-deploy.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hardhat-Minato/deploy/01-deploy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hardhat-Minato/hardhat.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hardhat-Minato/hardhat.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hardhat-Minato/helper-hardhat-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hardhat-Minato/helper-hardhat-config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/components/InsuranceSide.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/components/InsuranceSide.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/pages/user_Claim.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/pages/user_Claim.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-Minato/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-Minato/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/runner-build-errors.log" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,14 +65,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build gin-Minato/middleware">
-    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
-      <module name="gin-Minato" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
     <configuration name="go build dao.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="gin-Minato" />
       <working_directory value="$PROJECT_DIR$" />
@@ -110,15 +88,6 @@
       <kind value="FILE" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/main.go" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
-      <module name="gin-Minato" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="DIRECTORY" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
       <method v="2" />
     </configuration>
     <recent_temporary>
